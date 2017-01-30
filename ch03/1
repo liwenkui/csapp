@@ -1,0 +1,145 @@
+	.globl _lt_cnt
+	.zerofill __DATA,__pu_bss3,_lt_cnt,8,3
+	.globl _ge_cnt
+	.zerofill __DATA,__pu_bss3,_ge_cnt,8,3
+	.text
+	.globl __Z10absdiff_sell
+__Z10absdiff_sell:
+LFB0:
+	pushq	%rbp
+LCFI0:
+	movq	%rsp, %rbp
+LCFI1:
+	movq	%rdi, -24(%rbp)
+	movq	%rsi, -32(%rbp)
+	movq	-24(%rbp), %rax
+	cmpq	-32(%rbp), %rax
+	jge	L2
+	movq	_lt_cnt(%rip), %rax
+	addq	$1, %rax
+	movq	%rax, _lt_cnt(%rip)
+	movq	-32(%rbp), %rax
+	subq	-24(%rbp), %rax
+	movq	%rax, -8(%rbp)
+	jmp	L3
+L2:
+	movq	_ge_cnt(%rip), %rax
+	addq	$1, %rax
+	movq	%rax, _ge_cnt(%rip)
+	movq	-24(%rbp), %rax
+	subq	-32(%rbp), %rax
+	movq	%rax, -8(%rbp)
+L3:
+	movq	-8(%rbp), %rax
+	popq	%rbp
+LCFI2:
+	ret
+LFE0:
+	.globl __Z7absdiffll
+__Z7absdiffll:
+LFB1:
+	pushq	%rbp
+LCFI3:
+	movq	%rsp, %rbp
+LCFI4:
+	movq	%rdi, -24(%rbp)
+	movq	%rsi, -32(%rbp)
+	movq	-24(%rbp), %rax
+	cmpq	-32(%rbp), %rax
+	jge	L6
+	movq	-32(%rbp), %rax
+	subq	-24(%rbp), %rax
+	movq	%rax, -8(%rbp)
+	jmp	L7
+L6:
+	movq	-24(%rbp), %rax
+	subq	-32(%rbp), %rax
+	movq	%rax, -8(%rbp)
+L7:
+	movq	-8(%rbp), %rax
+	popq	%rbp
+LCFI5:
+	ret
+LFE1:
+	.section __TEXT,__eh_frame,coalesced,no_toc+strip_static_syms+live_support
+EH_frame1:
+	.set L$set$0,LECIE1-LSCIE1
+	.long L$set$0
+LSCIE1:
+	.long	0
+	.byte	0x1
+	.ascii "zR\0"
+	.byte	0x1
+	.byte	0x78
+	.byte	0x10
+	.byte	0x1
+	.byte	0x10
+	.byte	0xc
+	.byte	0x7
+	.byte	0x8
+	.byte	0x90
+	.byte	0x1
+	.align 3
+LECIE1:
+LSFDE1:
+	.set L$set$1,LEFDE1-LASFDE1
+	.long L$set$1
+LASFDE1:
+	.long	LASFDE1-EH_frame1
+	.quad	LFB0-.
+	.set L$set$2,LFE0-LFB0
+	.quad L$set$2
+	.byte	0
+	.byte	0x4
+	.set L$set$3,LCFI0-LFB0
+	.long L$set$3
+	.byte	0xe
+	.byte	0x10
+	.byte	0x86
+	.byte	0x2
+	.byte	0x4
+	.set L$set$4,LCFI1-LCFI0
+	.long L$set$4
+	.byte	0xd
+	.byte	0x6
+	.byte	0x4
+	.set L$set$5,LCFI2-LCFI1
+	.long L$set$5
+	.byte	0xc
+	.byte	0x7
+	.byte	0x8
+	.align 3
+LEFDE1:
+LSFDE3:
+	.set L$set$6,LEFDE3-LASFDE3
+	.long L$set$6
+LASFDE3:
+	.long	LASFDE3-EH_frame1
+	.quad	LFB1-.
+	.set L$set$7,LFE1-LFB1
+	.quad L$set$7
+	.byte	0
+	.byte	0x4
+	.set L$set$8,LCFI3-LFB1
+	.long L$set$8
+	.byte	0xe
+	.byte	0x10
+	.byte	0x86
+	.byte	0x2
+	.byte	0x4
+	.set L$set$9,LCFI4-LCFI3
+	.long L$set$9
+	.byte	0xd
+	.byte	0x6
+	.byte	0x4
+	.set L$set$10,LCFI5-LCFI4
+	.long L$set$10
+	.byte	0xc
+	.byte	0x7
+	.byte	0x8
+	.align 3
+LEFDE3:
+	.constructor
+	.destructor
+	.align 1
+	.subsections_via_symbols
