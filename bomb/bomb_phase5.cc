@@ -11,7 +11,7 @@ int main(){
 		cnt[i++]=posi;
 	}
 	for(auto i:cnt)
-		cout<<(char)(i+16*7)<<' ';
+		cout<<static_cast<char>(i+16*7)<<' ';
 	cout<<endl;
 	return 0;
 }
