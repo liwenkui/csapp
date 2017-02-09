@@ -20,3 +20,9 @@ void switch_eg(long x,long n,long *dest){
 	}
 	*dest=val;
 }
+int main(){
+	long a;
+	long x=1,n=105;
+	switch_eg(x,n,&a);
+	return 0;
+}

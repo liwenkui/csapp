@@ -36,6 +36,21 @@ L8:
 	movl	$0, %edi
 	jmp	L2
 LFE0:
+	.section __TEXT,__text_startup,regular,pure_instructions
+	.globl _main
+_main:
+LFB1:
+	subq	$16, %rsp
+LCFI0:
+	leaq	8(%rsp), %rdx
+	movl	$105, %esi
+	movl	$1, %edi
+	call	_switch_eg
+	movl	$0, %eax
+	addq	$16, %rsp
+LCFI1:
+	ret
+LFE1:
 	.section __TEXT,__eh_frame,coalesced,no_toc+strip_static_syms+live_support
 EH_frame1:
 	.set L$set$0,LECIE1-LSCIE1
@@ -67,4 +82,25 @@ LASFDE1:
 	.byte	0
 	.align 3
 LEFDE1:
+LSFDE3:
+	.set L$set$3,LEFDE3-LASFDE3
+	.long L$set$3
+LASFDE3:
+	.long	LASFDE3-EH_frame1
+	.quad	LFB1-.
+	.set L$set$4,LFE1-LFB1
+	.quad L$set$4
+	.byte	0
+	.byte	0x4
+	.set L$set$5,LCFI0-LFB1
+	.long L$set$5
+	.byte	0xe
+	.byte	0x18
+	.byte	0x4
+	.set L$set$6,LCFI1-LCFI0
+	.long L$set$6
+	.byte	0xe
+	.byte	0x8
+	.align 3
+LEFDE3:
 	.subsections_via_symbols
